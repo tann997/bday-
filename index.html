@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <link href="https://fonts.googleapis.com/css?family=Wendy+One" rel="stylesheet">
+    <style>
+        body {
+            background-image: radial-gradient(#374566, #010203);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            position: relative;
+        }
+        .hidden {
+            display: none;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 1.5em;
+            cursor: pointer;
+            background-color: rgba(182, 15, 97, 0.9);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: rgba(242, 112, 45, 0.9);
+        }
+        .container {
+            width: 800px;
+            height: 420px;
+            padding: 10px;
+            margin: 0 auto;
+            position: relative;
+        }
+        span {
+            text-transform: uppercase;
+            font-family: 'Wendy One', sans-serif; 
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.5em;
+            cursor: pointer;
+            background-color: rgba(182, 15, 97, 0.9);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin: 10px; /* Margin untuk memisahkan tombol */
+        }
+        button:hover {
+            background-color: rgba(242, 112, 45, 0.9);
+        }
+    
+        .balloon {
+            width: 738px;
+            margin: 0 auto;
+            padding-top: 30px;
+            position: relative;
+        }
+        .balloon > div {
+            width: 104px;
+            height: 140px;
+            background: rgba(182, 15, 97, 0.9);
+            border-radius: 80% 80% 80% 80%;
+            margin: 0 auto;
+            position: absolute;
+            padding: 10px;
+            box-shadow: inset 17px 7px 10px rgba(182, 15, 97, 0.9);
+            transform-origin: bottom center;
+        }
+        .balloon > div:nth-child(1) {
+            background: rgba(182, 15, 97, 0.9);
+            left: 0;
+            box-shadow: inset 10px 10px 10px rgba(135, 11, 72, 0.9);
+            animation: balloon1 6s ease-in-out infinite;
+        }
+        .balloon > div:nth-child(2) {
+            background: rgba(242, 112, 45, 0.9);
+            left: 120px;
+            box-shadow: inset 10px 10px 10px rgba(222, 85, 14, 0.9);
+            animation: balloon2 6s ease-in-out infinite;
+        }
+        .balloon > div:nth-child(3) {
+            background: rgba(45, 181, 167, 0.9);
+            left: 240px;
+            box-shadow: inset 10px 10px 10px rgba(35, 140, 129, 0.9);
+            animation: balloon4 6s ease-in-out infinite;
+        }
+        .balloon > div:nth-child(4) {
+            background: rgba(190, 61, 244, 0.9);
+            left: 360px;
+            box-shadow: inset 10px 10px 10px rgba(173, 14, 240, 0.9);
+            animation: balloon1 5s ease-in-out infinite;
+        }
+        .balloon > div:nth-child(5) {
+            background: rgba(180, 224, 67, 0.9);
+            left: 480px;
+            box-shadow: inset 10px 10px 10px rgba(158, 206, 34, 0.9);
+            animation: balloon3 5s ease-in-out infinite;
+        }
+        .balloon > div:nth-child(6) {
+            background: rgba(242, 194, 58, 0.9);
+            left: 600px;
+            box-shadow: inset 10px 10px 10px rgba(234, 177, 15, 0.9);
+            animation: balloon2 3s ease-in-out infinite;
+        }
+        .balloon > div:before {
+            color: rgba(182, 15, 97, 0.9);
+            position: absolute;
+            bottom: -11px;
+            left: 52px;
+            content: "▲";
+            font-size: 1em;
+        }
+        span {
+            font-size: 4.8em;
+            color: white;
+            position: relative;
+            top: 30px;
+            left: 50%;
+            margin-left: -27px;
+        }
+        h1 {
+            position: relative;
+            top: 200px;
+            text-align: center;
+            color: white;
+            font-size: 3.5em;
+            font-family: 'Wendy One', sans-serif; 
+        }
+
+        /* Fade in and fade out effects */
+        .fade {
+            animation: fade 2s forwards;
+        }
+
+        .fade-out {
+            animation: fade-out 2s forwards;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes balloon1 {
+            0%, 100% { transform: translateY(0) rotate(-6deg); }
+            50% { transform: translateY(-20px) rotate(8deg); }
+        }
+        @keyframes balloon2 {
+            0%, 100% { transform: translateY(0) rotate(6deg); }
+            50% { transform: translateY(-30px) rotate(-8deg); }
+        }
+        @keyframes balloon3 {
+            0%, 100% { transform: translate(0, -10px) rotate(6deg); }
+            50% { transform: translate(-20px, 30px) rotate(-8deg); }
+        }
+        @keyframes balloon4 {
+            0%, 100% { transform: translate(10px, -10px) rotate(-8deg); }
+            50% { transform: translate(-15px, 20px) rotate(10deg); }
+        }
+        
+ /* Styling untuk canvas */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Kirim canvas ke belakang */
+}
+
+/* Styling untuk tombol di bagian bawah */
+#showLetterButton {
+    position: fixed; /* Agar tombol tetap di posisi yang sama */
+    bottom: 20px; /* Jarak dari bawah layar */
+    left: 50%; /* Memusatkan tombol secara horizontal */
+    transform: translateX(-50%); /* Menggeser tombol ke kiri untuk memusatkannya */
+    z-index: 100; /* Pastikan di atas elemen lainnya */
+}
+
+/* Styling untuk modal */
+#modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Mulai dengan display none */
+}
+
+/* Tombol close */
+.close {
+    cursor: pointer;
+    position: absolute; /* Ganti menjadi absolute */
+    top: -45px; /* Jarak dari atas */
+    right: 0px; /* Jarak dari kanan */
+    font-size: 60px; /* Ukuran font tombol, Anda bisa mengubah sesuai keinginan */
+    color: black; /* Mengubah warna menjadi hitam */
+    z-index: 1100; /* Pastikan tombol close berada di atas modal */
+}
+
+
+/* Gaya untuk konten modal */
+.modal-content {
+    position: relative; /* Agar tombol close dapat diposisikan */
+}
+
+/* Gaya untuk fade-in dan fade-out */
+.fade {
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+    </style>
+</head>
+<body>
+    <canvas id="fireworksCanvas"></canvas> <!-- Fireworks canvas -->
+    <button id="playButton">coba benjet</button>
+
+    <div class="container hidden" id="greetingCard">
+        <audio id="audio" loop>
+            <source src="Ulangtahun.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio>
+        <div class="balloon">
+            <div><span>☺</span></div>
+            <div><span>B</span></div>
+            <div><span>D</span></div>
+            <div><span>A</span></div>
+            <div><span>Y</span></div>
+            <div><span>!</span></div>
+        </div>
+        <h1>Mba FERR!!</h1>
+        
+        <button id="showLetterButton" class="hidden">jagan di benjet</button>
+    </div>
+
+    <div id="modal" class="hidden">
+        <div class="modal-content">
+            <span id="closeButton" class="close">&times;</span> <!-- Tombol close -->
+            <p style="color: black;"><n>hehehe maaf ya telat, soalnya aku gatau yah, pokoknya selamat udah bisa bikin sim n ktp.</n> dua tiga semur jengkol, congrats repeat year 😁
+            </p> <!-- Mengubah warna teks surat menjadi hitam -->
+        </div>
+    </div>
+    
+    
+    <audio id="backgroundMusic" src="Ulangtahun.mp3" loop autoplay></audio> <!-- Ganti dengan path lagu Anda -->
+
+    <script>
+        const messages = [
+            "selamat ulang tahun, mba fernando 🥰🥳",
+            "maaf yah ngucapinnya telat 😰😰",
+            "semoga semua impian nya tercapai hehe :)",
+            "semoga di tahun ini lebih baik lagi",
+            "maaf ya suka ngerepotin hehe",
+            "semoga selalu baik-baik aja",
+            "harapan terbaik 🥳",
+        ];
+
+        let index = 0;
+        const button = document.getElementById("playButton");
+        const audio = document.getElementById("audio");
+        const greetingCard = document.getElementById("greetingCard");
+        const modal = document.getElementById("modal");
+        const closeButton = document.getElementById("closeButton");
+        const showLetterButton = document.getElementById("showLetterButton");
+        const backgroundMusic = document.getElementById('backgroundMusic');
+
+        // Menangani klik tombol untuk memulai musik dan menampilkan pesan
+        button.addEventListener("click", () => {
+            button.classList.add("hidden");
+            greetingCard.classList.remove("hidden");
+            audio.play();
+            showMessage(); // Memulai menampilkan pesan
+            showLetterButton.classList.remove("hidden"); // Menampilkan tombol Show Letter
+        });
+
+        // Fungsi untuk menampilkan pesan
+        function showMessage() {
+            if (index >= messages.length) {
+                index = 0; // Reset index jika sudah di akhir
+            }
+
+            const h2 = document.createElement("h2");
+            h2.textContent = messages[index];
+            h2.style.color = "white";
+            h2.style.textAlign = "center";
+            document.body.appendChild(h2);
+
+            h2.classList.add("fade");
+
+            setTimeout(() => {
+                h2.classList.add("fade-out");
+
+                // Setelah fade-out, hapus pesan dan tampilkan yang berikutnya
+                setTimeout(() => {
+                    document.body.removeChild(h2);
+                    index++;
+                    showMessage(); // Tampilkan pesan berikutnya
+                }, 2000); // Durasi sebelum menghapus pesan
+            }, 2000); // Durasi agar pesan terlihat
+        }
+
+        // Menangani klik tombol Show Letter untuk menampilkan modal
+        showLetterButton.addEventListener("click", () => {
+            modal.classList.remove("hidden"); // Menampilkan modal
+            modal.style.display = "flex"; // Menetapkan gaya untuk menampilkan modal
+        });
+
+        // Menangani klik tombol close untuk menyembunyikan modal
+        closeButton.addEventListener("click", () => {
+            modal.classList.add("hidden"); // Menyembunyikan modal
+            modal.style.display = "none"; // Menghapus tampilan modal
+        });
+
+        class Firework {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.particles = [];
+                this.exploded = false;
+
+                // Membuat partikel
+                this.createParticles();
+            }
+
+            createParticles() {
+                const colors = [
+                    'rgba(255, 0, 0, 0.9)', 
+                    'rgba(0, 255, 0, 0.9)', 
+                    'rgba(0, 0, 255, 0.9)', 
+                    'rgba(255, 255, 0, 0.9)', 
+                    'rgba(255, 0, 255, 0.9)', 
+                    'rgba(0, 255, 255, 0.9)'
+                ];
+
+                for (let i = 0; i < 100; i++) {
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 2 + 1;
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    this.particles.push({
+                        x: this.x,
+                        y: this.y,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed,
+                        alpha: 1,
+                        color: color // Simpan warna partikel
+                    });
+                }
+                this.exploded = true;
+            }
+
+            update() {
+                for (let particle of this.particles) {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    particle.alpha -= 0.01; // Mengurangi alpha untuk efek memudar
+                }
+            }
+
+            draw(ctx) {
+                for (let particle of this.particles) {
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, 3, 0, Math.PI * 2);
+                    ctx.fillStyle = particle.color; // Gunakan warna partikel
+                    ctx.globalAlpha = particle.alpha;
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+        }
+
+        const canvas = document.getElementById('fireworksCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let fireworks = [];
+
+        function createFireworks() {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height / 2;
+            fireworks.push(new Firework(x, y));
+
+            // Buat kembang api baru setiap 500ms
+            setTimeout(createFireworks, 500);
+        }
+
+        function update() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let firework of fireworks) {
+                firework.update();
+                firework.draw(ctx);
+            }
+
+            // Hapus kembang api yang sudah memudar
+            fireworks = fireworks.filter(firework => firework.particles.some(p => p.alpha > 0));
+
+            requestAnimationFrame(update);
+        }
+
+        update(); // Mulai pembaruan animasi
+        createFireworks(); // Mulai membuat kembang api
+    </script>
+</body>
+</html>
